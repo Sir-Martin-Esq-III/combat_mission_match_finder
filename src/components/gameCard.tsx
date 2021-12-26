@@ -19,11 +19,12 @@ interface Props {
     gameuuid: string;
     email?: string;
     steamUserName?: string;
+    openGame: boolean;
   };
 }
 
 export default function GameCard({ gameInfo }: Props): ReactElement {
-  const { game, map, mode, email, steamUserName } = gameInfo;
+  const { game, map, mode, email, steamUserName, openGame } = gameInfo;
   const [displayModal, setdisplayModal] = useState(false);
 
   return (
@@ -66,8 +67,12 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
         </Modal>
       )}
       <div
-        className="bg-green-200 h-fit w-full sm:w-3/4 rounded-lg shadow-md flex flex-col hover:scale-110 hover:cursor-pointer my-5"
-        onClick={() => setdisplayModal(true)}
+        className={`bg-green-200 h-fit w-full sm:w-3/4 rounded-lg shadow-md flex flex-col my-5 ${
+          !openGame
+            ? "grayscale"
+            : "filter-none  hover:scale-110 hover:cursor-pointer"
+        }`}
+        onClick={() => (openGame ? setdisplayModal(true) : "")}
       >
         <img
           src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"

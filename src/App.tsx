@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import GameCard from "./components/gameCard";
-import { Games, GameModes, openGameType } from "./components/utils/types";
+import Header from "./components/header";
+import { Games, GameModes, GameType } from "./components/utils/types";
 import logo from "./logo.svg";
 
-const games: openGameType[] = [
+const games: GameType[] = [
   {
     game: Games.COMBAT_MISSION_BLACK_SEA,
     mode: GameModes.PLAY_BY_EMAIL,
@@ -11,6 +12,7 @@ const games: openGameType[] = [
     gameuuid: "0",
     email: undefined,
     steamUserName: "Sir-Martin-Esq",
+    openGame: true,
   },
   {
     game: Games.COMBAT_MISSION_SHOCK_FORCE_2,
@@ -19,6 +21,7 @@ const games: openGameType[] = [
     gameuuid: "1",
     email: undefined,
     steamUserName: "Sir-Martin-Esq",
+    openGame: true,
   },
   {
     game: Games.COMBAT_MISSION_COLD_WAR,
@@ -27,6 +30,7 @@ const games: openGameType[] = [
     gameuuid: "2",
     email: "test@gmail.com",
     steamUserName: "Sir-Martin-Esq",
+    openGame: true,
   },
   {
     game: Games.COMBAT_MISSION_BLACK_SEA,
@@ -35,6 +39,7 @@ const games: openGameType[] = [
     gameuuid: "3",
     email: undefined,
     steamUserName: "Sir-Martin-Esq",
+    openGame: false,
   },
   {
     game: Games.COMBAT_MISSION_BLACK_SEA,
@@ -43,6 +48,7 @@ const games: openGameType[] = [
     gameuuid: "4",
     email: undefined,
     steamUserName: "Sir-Martin-Esq",
+    openGame: true,
   },
   {
     game: Games.COMBAT_MISSION_BLACK_SEA,
@@ -51,16 +57,15 @@ const games: openGameType[] = [
     gameuuid: "5",
     email: undefined,
     steamUserName: "Sir-Martin-Esq",
+    openGame: false,
   },
 ];
 
 function App() {
   return (
-    <div className="flex flex-row h-screen">
-      <aside className="hidden md:block md:w-1/4 md:m-2 md:bg-gray-200 h-full">
-        HELLO
-      </aside>
-      <div className=" grid xs:grid-cols-1 place-items-center sm:grid-cols-2 md:w-3/4 lg:grid-cols-3">
+    <div className="flex flex-col h-screen">
+      <Header />
+      <div className=" my-12 grid xs:grid-cols-1 place-items-center sm:grid-cols-2 w-full lg:grid-cols-3">
         {games.map((game, index) => (
           <GameCard key={index} gameInfo={game} />
         ))}

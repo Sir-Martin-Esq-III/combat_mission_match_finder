@@ -15,11 +15,12 @@ export enum GameModes{
     INTERNET="Internet"
 }
 
-export type openGameType = {
+export type GameType = {
     game: Games;
     mode: GameModes;
     map: string;
     gameuuid: string;
     email?: string;
     steamUserName?: string;
+    openGame:boolean
   };
