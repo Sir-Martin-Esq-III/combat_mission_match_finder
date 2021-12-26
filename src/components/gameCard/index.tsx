@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
-import Modal from "./modal";
-import { GameModes, Games } from "./utils/types";
+import Modal from "../modal";
+import { GameModes, Games } from "../utils/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGamepad,
@@ -31,7 +31,10 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
     <React.Fragment>
       {displayModal && (
         <Modal onClose={() => setdisplayModal(false)}>
-          <div className="flex flex-col h-1/2 md:flex-row md:h-full">
+          <div
+            data-test-id=""
+            className="flex flex-col h-1/2 md:flex-row md:h-full"
+          >
             <img
               src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"
               alt=""
@@ -72,15 +75,26 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
             ? "grayscale"
             : "filter-none  hover:scale-110 hover:cursor-pointer"
         }`}
+        data-testid="small-card-container"
         onClick={() => (openGame ? setdisplayModal(true) : "")}
       >
         <img
           src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"
           alt=""
+          data-testid="small-game-card-image"
         />
-        <p className="text-black">{`Game: ${game}`}</p>
-        <p className="text-black">{`Map:  ${map}`}</p>
-        <p className="text-black">{`Mode: ${mode}`}</p>
+        <p
+          data-testid="small-game-card-game"
+          className="text-black"
+        >{`Game: ${game}`}</p>
+        <p
+          data-testid="small-game-card-map"
+          className="text-black"
+        >{`Map: ${map}`}</p>
+        <p
+          data-testid="small-game-card-mode"
+          className="text-black"
+        >{`Mode: ${mode}`}</p>
       </div>
     </React.Fragment>
   );
