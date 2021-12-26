@@ -65,7 +65,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <div className=" my-12 grid xs:grid-cols-1 place-items-center sm:grid-cols-2 w-full lg:grid-cols-3">
+      <div className=" my-12 grid xs:grid-cols-1 place-items-center sm:grid-cols-2 w-full lg:grid-cols-3 xl:grid-cols-4">
         {games.map((game, index) => (
           <GameCard key={index} gameInfo={game} />
         ))}

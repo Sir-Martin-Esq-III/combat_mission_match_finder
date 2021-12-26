@@ -31,13 +31,13 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
     <React.Fragment>
       {displayModal && (
         <Modal onClose={() => setdisplayModal(false)}>
-          <div className="flex flex-row h-full">
+          <div className="flex flex-col h-1/2 md:flex-row md:h-full">
             <img
               src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"
               alt=""
-              className="h-full w-1/3 rounded-l-lg"
+              className="h-full w-full md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none"
             />
-            <div className="flex flex-col w-1/3 h-full">
+            <div className="flex flex-col w-full md:w-1/3 h-full">
               <div className="flex flex-row m-2">
                 <FontAwesomeIcon icon={faGamepad} />
                 <p className="text-black">{`Game: ${game}`}</p>
@@ -67,7 +67,7 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
         </Modal>
       )}
       <div
-        className={`bg-green-200 h-fit w-full sm:w-3/4 rounded-lg shadow-md flex flex-col my-5 ${
+        className={`bg-green-200 h-fit w-full sm:w-3/4 max-w-sm rounded-lg shadow-md flex flex-col my-5 ${
           !openGame
             ? "grayscale"
             : "filter-none  hover:scale-110 hover:cursor-pointer"
