@@ -17,10 +17,11 @@ export enum GameModes{
 
 export type GameType = {
     game: Games;
-    mode: GameModes;
-    map: string;
-    gameuuid: string;
-    email?: string;
-    steamUserName?: string;
-    openGame:boolean
+    method: GameModes;
+    modules: string;
+    scenario: string;
+    type: string;
+    id: string;
+    status:boolean;
+    gamepw:string;
   };

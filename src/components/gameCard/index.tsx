@@ -13,18 +13,28 @@ import { faSteam } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
   gameInfo: {
+    // game: Games;
+    // mode: GameModes;
+    // map: string;
+    // gameuuid: string;
+    // email?: string;
+    // steamUserName?: string;
+    // openGame: boolean;
+
     game: Games;
-    mode: GameModes;
-    map: string;
-    gameuuid: string;
-    email?: string;
-    steamUserName?: string;
-    openGame: boolean;
+    method: GameModes;
+    modules: string;
+    scenario: string;
+    type: string;
+    id: string;
+    status: boolean;
+    gamepw: string;
   };
 }
 
 export default function GameCard({ gameInfo }: Props): ReactElement {
-  const { game, map, mode, email, steamUserName, openGame } = gameInfo;
+  const { game, method, modules, scenario, type, id, status, gamepw } =
+    gameInfo;
   const [displayModal, setdisplayModal] = useState(false);
 
   return (
@@ -47,36 +57,36 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
               </div>
               <div className="flex flex-row m-2">
                 <FontAwesomeIcon icon={faInfoCircle} />
-                <p className="text-black">{`Mode: ${mode}`}</p>
+                <p className="text-black">{`Method: ${method}`}</p>
               </div>
               <div className="flex flex-row m-2">
                 <FontAwesomeIcon icon={faMap} />
-                <p className="text-black">{`Map: ${map}`}</p>
+                <p className="text-black">{`Scenario: ${scenario}`}</p>
               </div>
-              {email && (
+              {/* {email && (
                 <div className="flex flex-row m-2">
                   <FontAwesomeIcon icon={faEnvelope} />
                   <p className="text-black">{`Email: ${email}`}</p>
                 </div>
-              )}
-              {steamUserName && (
+              )} */}
+              {/* {steamUserName && (
                 <div className="flex flex-row m-2">
                   <FontAwesomeIcon icon={faSteam} />
                   <p className="text-black">{`Steam: ${steamUserName}`}</p>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </Modal>
       )}
       <div
         className={`bg-green-200 h-fit w-full sm:w-3/4 max-w-sm rounded-lg shadow-md flex flex-col my-5 ${
-          !openGame
+          !status
             ? "grayscale"
             : "filter-none  hover:scale-110 hover:cursor-pointer"
         }`}
         data-testid="small-card-container"
-        onClick={() => (openGame ? setdisplayModal(true) : "")}
+        onClick={() => (status ? setdisplayModal(true) : "")}
       >
         <img
           src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"
@@ -90,11 +100,11 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
         <p
           data-testid="small-game-card-map"
           className="text-black"
-        >{`Map: ${map}`}</p>
+        >{`Scenario: ${scenario}`}</p>
         <p
           data-testid="small-game-card-mode"
           className="text-black"
-        >{`Mode: ${mode}`}</p>
+        >{`Method: ${method}`}</p>
       </div>
     </React.Fragment>
   );
