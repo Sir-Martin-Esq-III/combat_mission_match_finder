@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import Modal from "../modal";
-import { GameModes, Games } from "../utils/types";
+import { GameImages, GameModes, Games } from "../utils/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGamepad,
@@ -13,20 +13,12 @@ import { faSteam } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
   gameInfo: {
-    // game: Games;
-    // mode: GameModes;
-    // map: string;
-    // gameuuid: string;
-    // email?: string;
-    // steamUserName?: string;
-    // openGame: boolean;
-
     game: Games;
     method: GameModes;
     modules: string;
     scenario: string;
     type: string;
-    id: string;
+    id?: string;
     status: boolean;
     gamepw: string;
   };
@@ -46,7 +38,7 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
             className="flex flex-col h-1/2 md:flex-row md:h-full"
           >
             <img
-              src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"
+              src={GameImages[game]}
               alt=""
               className="h-full w-full md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none"
             />
@@ -89,7 +81,7 @@ export default function GameCard({ gameInfo }: Props): ReactElement {
         onClick={() => (status ? setdisplayModal(true) : "")}
       >
         <img
-          src="https://cdn.akamai.steamstatic.com/steam/apps/1551160/capsule_616x353.jpg?t=1637075574"
+          src={GameImages[game]}
           alt=""
           data-testid="small-game-card-image"
         />

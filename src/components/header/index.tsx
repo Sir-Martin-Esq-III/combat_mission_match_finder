@@ -1,10 +1,16 @@
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
+import { db } from "../../firebase/firebase-config";
+import MakeGame from "../makeGame/MakeGame";
 import Modal from "../modal";
+import { GameType } from "../utils/types";
 import Filters from "./filters";
 
 interface Props {}
 
 const Header = (props: Props) => {
+  const gameCollectionRef = collection(db, "games");
+
   const [searchValue, setsearchValue] = useState("");
   const [makeGameRequest, setmakeGameRequest] = useState(false);
 
@@ -12,7 +18,15 @@ const Header = (props: Props) => {
     console.log("search submit");
   };
 
-  const handleMakeGameRequest = () => {
+  const handleMakeGameRequest = (data: any) => {
+    //Connect to firestore
+    addDoc(gameCollectionRef, data).then((res) => {
+      console.log("results: ", res);
+    });
+
+    //Add a new document
+    // update List
+    //Close modal
     setmakeGameRequest(false);
   };
   return (
@@ -35,14 +49,7 @@ const Header = (props: Props) => {
           <p>Make request</p>
           {makeGameRequest && (
             <Modal onClose={() => setmakeGameRequest(false)}>
-              <button
-                className="rounded-md bg-pink-300 text-white"
-                onClick={() => {
-                  handleMakeGameRequest();
-                }}
-              >
-                Make game!
-              </button>
+              <MakeGame gameSubmissionHandler={handleMakeGameRequest} />
             </Modal>
           )}
         </div>
